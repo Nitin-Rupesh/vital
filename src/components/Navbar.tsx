@@ -17,7 +17,7 @@ const Navbar = () => {
     <div className="flex justify-between h-16">
       <div className="flex items-center">
         <img
-          src="C:\Users\Dell\Downloads\project-bolt-sb1-fmhazkca\project\src\VitalStride Logo-03.png" // <-- Replace with your logo path
+          src="src\components\VitalStrideLogo03.png" // <-- Replace with your logo path
           alt="VitalStride Logo"
           className="h-10 w-auto"
         />
