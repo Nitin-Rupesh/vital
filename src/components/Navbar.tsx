@@ -5,13 +5,24 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex items-center">
-            <span className="text-2xl font-bold text-indigo-600">VitalStride</span>
-          </div>
+    // <nav className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
+    //   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    //     <div className="flex justify-between h-16">
+    //       <div className="flex items-center">
+    //         <span className="text-2xl font-bold text-indigo-600">VitalStride</span>
+    //       </div>
           
+          <nav className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex justify-between h-16">
+      <div className="flex items-center">
+        <img
+          src="C:\Users\Dell\Downloads\project-bolt-sb1-fmhazkca\project\src\VitalStride Logo-03.png" // <-- Replace with your logo path
+          alt="VitalStride Logo"
+          className="h-10 w-auto"
+        />
+      </div>
+
           <div className="hidden md:flex items-center space-x-8">
             <a href="#about" className="text-gray-700 hover:text-indigo-600">About</a>
             <a href="#services" className="text-gray-700 hover:text-indigo-600">Services</a>
