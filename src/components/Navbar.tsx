@@ -17,7 +17,7 @@ const Navbar = () => {
     <div className="flex justify-between h-16">
       <div className="flex items-center">
         <img
-          src="src\components\VitalStrideLogo03.png" // <-- Replace with your logo path
+          src="/VitalStrideLogo03.png" // <-- Replace with your logo path
           alt="VitalStride Logo"
           className="h-10 w-auto"
         />
