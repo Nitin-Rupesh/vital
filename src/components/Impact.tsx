@@ -1,14 +1,19 @@
 import React from 'react';
-import { Heart, Droplets, Sun, Sprout, Users, Brain } from 'lucide-react';
+import { Heart, Droplets, Sun, Sprout, Users, Brain, Laptop, Coins, Fish, Cog as Cow } from 'lucide-react';
 
 const Impact = () => {
   const areas = [
     { icon: <Heart className="h-6 w-6" />, title: 'Public Health' },
     { icon: <Sprout className="h-6 w-6" />, title: 'Nutrition' },
-    { icon: <Users className="h-6 w-6" />, title: 'Livelihood' },
+    { icon: <Users className="h-6 w-6" />, title: 'Agriculture' },
+    { icon: <Brain className="h-6 w-6" />, title: 'Livelihood' },
     { icon: <Droplets className="h-6 w-6" />, title: 'WASH' },
+    { icon: <Laptop className="h-6 w-6" />, title: 'Digital & Emerging Technologies' },
     { icon: <Sun className="h-6 w-6" />, title: 'Climate Change' },
-    { icon: <Brain className="h-6 w-6" />, title: 'Water Resource Management' }
+    { icon: <Droplets className="h-6 w-6" />, title: 'Water Resource Management' },
+    { icon: <Coins className="h-6 w-6" />, title: 'Financial Literacy' },
+    { icon: <Cow className="h-6 w-6" />, title: 'Animal Husbandry' },
+    { icon: <Fish className="h-6 w-6" />, title: 'Aquaculture' }
   ];
 
   return (
@@ -21,7 +26,7 @@ const Impact = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {areas.map((area, index) => (
             <div key={index} className="p-6 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition text-center">
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-indigo-100 text-indigo-600 mb-4">
