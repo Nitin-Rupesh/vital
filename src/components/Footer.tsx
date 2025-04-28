@@ -21,10 +21,11 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Impact Areas</h4>
             <ul className="space-y-2">
-              <li className="text-gray-400">Public Health</li>
-              <li className="text-gray-400">Nutrition</li>
-              <li className="text-gray-400">Livelihood</li>
-              <li className="text-gray-400">WASH</li>
+              <li><a href="#about" className="text-gray-400 hover:text-white">About Us</a></li>
+              <li><a href="#services" className="text-gray-400 hover:text-white">Services</a></li>
+              <li><a href="#impact" className="text-gray-400 hover:text-white">Impact Areas</a></li>
+              <li><a href="#faq" className="text-gray-400 hover:text-white">FAQ</a></li>
+              <li><a href="#contact" className="text-gray-400 hover:text-white">Contact</a></li>
             </ul>
           </div>
           <div>
