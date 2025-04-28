@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 const FAQ = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   const faqs = [
     {
       question: "How often will the training sessions take place?",
@@ -40,21 +43,42 @@ const FAQ = () => {
     }
   ];
 
+  const toggleQuestion = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
     <section id="faq" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">FAQ Section</h2>
           <p className="max-w-2xl mx-auto text-lg text-gray-600">
-            Find answers to common questions about our training program.
+            Click on each question to view the answer
           </p>
         </div>
 
-        <div className="grid gap-6 max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto space-y-4">
           {faqs.map((faq, index) => (
-            <div key={index} className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">{faq.question}</h3>
-              <p className="text-gray-600">{faq.answer}</p>
+            <div
+              key={index}
+              className="bg-white rounded-xl shadow-sm overflow-hidden"
+            >
+              <button
+                onClick={() => toggleQuestion(index)}
+                className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition"
+              >
+                <span className="font-medium text-gray-900">{faq.question}</span>
+                {openIndex === index ? (
+                  <ChevronUp className="h-5 w-5 text-gray-500" />
+                ) : (
+                  <ChevronDown className="h-5 w-5 text-gray-500" />
+                )}
+              </button>
+              {openIndex === index && (
+                <div className="px-6 pb-4 text-gray-600">
+                  {faq.answer}
+                </div>
+              )}
             </div>
           ))}
         </div>
