@@ -124,7 +124,7 @@ const Contact = () => {
                 <MapPin className="h-6 w-6 text-indigo-600 mr-3" />
                 <div>
                   <h4 className="font-medium">Address</h4>
-                  <p className="text-gray-600">VitalStride, Bangalore, India</p>
+                  <p className="text-gray-600">VitalStride, Varthur, Bangalore, KA</p>
                 </div>
               </div>
             </div>

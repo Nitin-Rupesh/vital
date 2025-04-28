@@ -29,8 +29,8 @@ const Footer = () => {
           </div>
           <div>
             <h4 className="font-semibold mb-4">Connect With Us</h4>
-            <p className="text-gray-400 mb-2">info@vitalstride.org</p>
-            <p className="text-gray-400">Bangalore, India</p>
+            <p className="text-gray-400 mb-2">info@vitalstride.in</p>
+            <p className="text-gray-400">VitalStride, Varthur, Bangalore, KA</p>
           </div>
         </div>
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
