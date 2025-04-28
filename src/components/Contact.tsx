@@ -110,12 +110,12 @@ const Contact = () => {
                 <Mail className="h-6 w-6 text-indigo-600 mr-3" />
                 <div>
                   <h4 className="font-medium">Email</h4>
-                  <p className="text-gray-600">info@vitalstride.org</p>
+                  <p className="text-gray-600">info@vitalstride.in</p>
                 </div>
-              </div>
+              {/* </div>
               <div className="flex items-start">
                 <Phone className="h-6 w-6 text-indigo-600 mr-3" />
-                {/* <div>
+                <div>
                   <h4 className="font-medium">Phone</h4>
                   <p className="text-gray-600">+91-XXXXXXXXXX</p>
                 </div> */}
