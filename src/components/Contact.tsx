@@ -2,21 +2,109 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
 const Contact = () => {
+  const domains = [
+    {
+      name: 'Public Health',
+      audience: 'Govt. Doctor, Nurse, Lab Technician, Women Health Volunteer, Community',
+      location: 'Pudur & Vilathikulam Blocks of Thoothukudi',
+      type: 'Remote',
+      language: 'Tamil'
+    },
+    {
+      name: 'Nutrition',
+      audience: 'Anganwadi Worker, Anganwadi Helper, Pregnant and lactating women',
+      location: 'Pudur & Vilathikulam Blocks of Thoothukudi',
+      type: 'Remote',
+      language: 'Tamil'
+    },
+    {
+      name: 'Agriculture',
+      audience: 'Farmer, FPO, Agri Entrepreneur, SHGs',
+      location: 'Pudur & Vilathikulam Blocks of Thoothukudi',
+      type: 'Remote',
+      language: 'Tamil'
+    },
+    {
+      name: 'Livelihood',
+      audience: 'Youth, SHGs, SMEs',
+      location: 'Pudur & Vilathikulam Blocks of Thoothukudi',
+      type: 'Remote',
+      language: 'Tamil'
+    },
+    {
+      name: 'WASH',
+      audience: 'Community, Sanitation workers',
+      location: 'Pudur & Vilathikulam Blocks of Thoothukudi',
+      type: 'Remote',
+      language: 'Tamil'
+    },
+    {
+      name: 'Digital & Emerging Technologies',
+      audience: 'Youth, SHGs, SMEs',
+      location: 'Pudur & Vilathikulam Blocks of Thoothukudi',
+      type: 'Remote',
+      language: 'Tamil'
+    },
+    {
+      name: 'Climate Change',
+      audience: 'Youth, Institutions',
+      location: 'Pudur & Vilathikulam Blocks of Thoothukudi',
+      type: 'Remote',
+      language: 'Tamil'
+    },
+    {
+      name: 'Water Resource Management',
+      audience: 'Community, Farmer, Water User Committees',
+      location: 'Pudur & Vilathikulam Blocks of Thoothukudi',
+      type: 'Remote',
+      language: 'Tamil'
+    },
+    {
+      name: 'Financial Literacy',
+      audience: 'SHGs, Women, Community',
+      location: 'Pudur & Vilathikulam Blocks of Thoothukudi',
+      type: 'Remote',
+      language: 'Tamil'
+    },
+    {
+      name: 'Animal Husbandry',
+      audience: 'Farmer, FPO, Agri Entrepreneur, SHGs',
+      location: 'Pudur & Vilathikulam Blocks of Thoothukudi',
+      type: 'Remote',
+      language: 'Tamil'
+    },
+    {
+      name: 'Aquaculture',
+      audience: 'Fishing Community, Farmer',
+      location: 'Pudur & Vilathikulam Blocks of Thoothukudi',
+      type: 'Remote',
+      language: 'Tamil'
+    }
+  ];
+
   const [formData, setFormData] = useState({
     fullName: '',
     age: '',
     gender: '',
     education: '',
     otherEducation: '',
+    domain: '',
     experience: '',
     email: '',
     mobile: '',
     message: ''
   });
 
+  const [selectedDomain, setSelectedDomain] = useState<typeof domains[0] | null>(null);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+
+    if (name === 'domain') {
+      const domain = domains.find(d => d.name === value);
+      setSelectedDomain(domain || null);
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -129,21 +217,96 @@ const Contact = () => {
             {/* Professional Details */}
             <div className="pt-6 border-t border-gray-200">
               <h3 className="text-lg font-medium text-gray-900 mb-4">Professional Details</h3>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Domain Experience <span className="text-red-500">*</span>
-                </label>
-                <div className="flex items-center gap-2">
-                  <input
-                    type="number"
-                    name="experience"
+              
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Domain <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    name="domain"
                     required
-                    min="0"
-                    value={formData.experience}
+                    value={formData.domain}
                     onChange={handleInputChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                  />
-                  <span className="text-gray-600">years</span>
+                  >
+                    <option value="">Select domain</option>
+                    {domains.map((domain, index) => (
+                      <option key={index} value={domain.name}>
+                        {domain.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {selectedDomain && (
+                  <div className="space-y-4 bg-gray-50 p-4 rounded-lg">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Target Audience
+                      </label>
+                      <input
+                        type="text"
+                        value={selectedDomain.audience}
+                        readOnly
+                        className="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-500"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Training Location
+                      </label>
+                      <input
+                        type="text"
+                        value={selectedDomain.location}
+                        readOnly
+                        className="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-500"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Location Type
+                      </label>
+                      <input
+                        type="text"
+                        value={selectedDomain.type}
+                        readOnly
+                        className="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-500"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Training Language
+                      </label>
+                      <input
+                        type="text"
+                        value={selectedDomain.language}
+                        readOnly
+                        className="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-500"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Domain Experience <span className="text-red-500">*</span>
+                  </label>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="number"
+                      name="experience"
+                      required
+                      min="0"
+                      value={formData.experience}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                    />
+                    <span className="text-gray-600">years</span>
+                  </div>
                 </div>
               </div>
             </div>
