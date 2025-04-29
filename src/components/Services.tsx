@@ -31,7 +31,7 @@ const Services = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Services</h2>
           <p className="max-w-2xl mx-auto text-lg text-gray-600">
-            Comprehensive training solutions designed for the development sector.
+          Vitalstride supports NGOs, CSR Foundations, and Development Agencies by providing qualified trainers, domain experts, and impact assessment services across multiple sectors such as Public Health, Agriculture, WASH, Livelihood, Financial Literacy, Climate Change, and more.
           </p>
         </div>
 
