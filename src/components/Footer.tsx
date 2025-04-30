@@ -35,8 +35,17 @@ const Footer = () => {
           </div>
         </div>
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} VitalStride. All rights reserved.  Powered by Digisailor</p>
-        </div>
+          <p>&copy; {new Date().getFullYear()} VitalStride. All rights reserved. Powered by{" "}
+    <a
+      href="https://www.digisailor.com" // Replace with the correct URL if needed
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-blue-400 hover:underline"
+    >
+      Digisailor
+    </a>
+  </p>
+</div>
       </div>
     </footer>
   );
