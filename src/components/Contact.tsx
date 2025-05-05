@@ -381,9 +381,9 @@ const Contact = () => {
               className="w-full bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition"
             >
               Submit Application
+              </button>
               <input type="hidden" name="_captcha" value="false"></input>
               <input type="hidden" name="_next" value="https://vitalstride.in/thank-you"/>
-              </button>
           </form>
         </div>
 
