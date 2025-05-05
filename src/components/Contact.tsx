@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Contact = () => {
+  const navigate = useNavigate();
   const domains = [
     {
       name: 'Public Health',
@@ -107,9 +109,13 @@ const Contact = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Here you would typically send the form data to your backend
     console.log(formData);
+    
+    // Redirect to thank you page
+    navigate('/thank-you');
   };
 
   return (
@@ -124,7 +130,8 @@ const Contact = () => {
         </div>
 
         <div className="max-w-2xl mx-auto">
-          <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-xl shadow-sm">
+          <form action="https://formsubmit.co/info@vitalstride.in" method="POST" className="space-y-6 bg-white p-8 rounded-xl shadow-sm">
+          {/* onSubmit={handleSubmit} */}
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -372,6 +379,8 @@ const Contact = () => {
             >
               Submit Application
             </button>
+            <input type="hidden" name="_next" value="https://www.vitalstride.in/thank-you"/>
+            <input type="hidden" name="_captcha" value="false"></input>
           </form>
         </div>
 
