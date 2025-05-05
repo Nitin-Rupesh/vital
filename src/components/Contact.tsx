@@ -131,7 +131,6 @@ const Contact = () => {
 
         <div className="max-w-2xl mx-auto">
           <form action="https://formsubmit.co/info@vitalstride.in" method="POST" className="space-y-6 bg-white p-8 rounded-xl shadow-sm">
-          {/* onSubmit={handleSubmit} */}
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
