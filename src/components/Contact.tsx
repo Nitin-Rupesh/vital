@@ -109,13 +109,13 @@ const Contact = () => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    // Here you would typically send the form data to your backend
-    console.log(formData);
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   // Here you would typically send the form data to your backend
+  //   console.log(formData);
     
-    // Redirect to thank you page
-    navigate('/thank-you');
+  //   // Redirect to thank you page
+  //   navigate('/thank-you');
   };
 
   return (
