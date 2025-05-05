@@ -130,7 +130,11 @@ const Contact = () => {
         </div>
 
         <div className="max-w-2xl mx-auto">
-          <form action="https://formsubmit.co/info@vitalstride.in" method="POST" className="space-y-6 bg-white p-8 rounded-xl shadow-sm">
+          <form 
+          action="https://formsubmit.co/info@vitalstride.in"
+          method="POST"
+          className="space-y-6 bg-white p-8 rounded-xl shadow-sm"
+        >
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -377,9 +381,9 @@ const Contact = () => {
               className="w-full bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition"
             >
               Submit Application
-            </button>
-            <input type="hidden" name="_captcha" value="false"></input>
-            <input type="hidden" name="_next" value="https://vitalstride.in/thank-you"/>
+              <input type="hidden" name="_captcha" value="false"></input>
+              <input type="hidden" name="_next" value="https://vitalstride.in/thank-you"/>
+              </button>
           </form>
         </div>
 
