@@ -383,7 +383,7 @@ const Contact = () => {
               Submit Application
               </button>
               <input type="hidden" name="_captcha" value="false"></input>
-              <input type="hidden" name="_next" value="https://vitalstride.in/thank-you"/>
+              <input type="hidden" name="_next" value="https://vitalstride.in/ThankYou.tsx"/>
           </form>
         </div>
 
