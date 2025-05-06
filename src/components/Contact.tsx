@@ -115,7 +115,7 @@ const Contact = () => {
   //   console.log(formData);
     
   //   // Redirect to thank you page
-  //   navigate('/thank-you');
+    navigate('/thank-you');
   // };
 
   return (
