@@ -404,6 +404,17 @@ const Contact = () => {
                 <p className="text-gray-600">VitalStride, Varthur, Bangalore, KA</p>
               </div>
             </div>
+
+            {/* Submit Button */}
+              <div className="pt-6">
+              <button
+                type="submit"
+                className="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              >
+                Submit
+              </button>
+            </div>
+
           </div>
         </div>
       </div>
