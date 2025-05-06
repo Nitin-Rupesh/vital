@@ -116,7 +116,7 @@ const Contact = () => {
     
   //   // Redirect to thank you page
   //   navigate('/thank-you');
-  };
+  // };
 
   return (
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
@@ -383,7 +383,7 @@ const Contact = () => {
               Submit Application
               </button>
               <input type="hidden" name="_captcha" value="false"></input>
-              <input type="hidden" name="_next" value="https://vitalstride.in/ThankYou.tsx"/>
+              <input type="hidden" name="_next" value="https://vitalstride.in/thank-you"/>
           </form>
         </div>
 
