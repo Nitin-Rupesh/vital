@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
 const Contact = () => {
-  const navigate = useNavigate();
+  const [selectedDomain, setSelectedDomain] = useState(null);
+
   const domains = [
     {
       name: 'Public Health',
@@ -84,39 +84,10 @@ const Contact = () => {
     }
   ];
 
-  const [formData, setFormData] = useState({
-    fullName: '',
-    age: '',
-    gender: '',
-    education: '',
-    otherEducation: '',
-    domain: '',
-    experience: '',
-    email: '',
-    mobile: '',
-    message: ''
-  });
-
-  const [selectedDomain, setSelectedDomain] = useState<typeof domains[0] | null>(null);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-
-    if (name === 'domain') {
-      const domain = domains.find(d => d.name === value);
-      setSelectedDomain(domain || null);
-    }
+  const handleDomainChange = (e) => {
+    const domain = domains.find(d => d.name === e.target.value);
+    setSelectedDomain(domain || null);
   };
-
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   // Here you would typically send the form data to your backend
-  //   console.log(formData);
-    
-  //   // Redirect to thank you page
-    // navigate('/thank-you');
-  // };
 
   return (
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
@@ -131,10 +102,14 @@ const Contact = () => {
 
         <div className="max-w-2xl mx-auto">
           <form 
-          action="https://formsubmit.co/info@vitalstride.in"
-          method="POST"
-          className="space-y-6 bg-white p-8 rounded-xl shadow-sm"
-        >
+            action="https://formsubmit.co/info@vitalstride.in" 
+            method="POST" 
+            className="space-y-6 bg-white p-8 rounded-xl shadow-sm"
+          >
+            {/* FormSubmit.co Configuration */}
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_next" value="https://vitalstride.in/thank-you" />
+
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -144,8 +119,6 @@ const Contact = () => {
                   type="text"
                   name="fullName"
                   required
-                  value={formData.fullName}
-                  onChange={handleInputChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                 />
               </div>
@@ -160,8 +133,6 @@ const Contact = () => {
                     name="age"
                     required
                     min="18"
-                    value={formData.age}
-                    onChange={handleInputChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   />
                   <span className="text-gray-600">years</span>
@@ -175,8 +146,6 @@ const Contact = () => {
                 <select
                   name="gender"
                   required
-                  value={formData.gender}
-                  onChange={handleInputChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                 >
                   <option value="">Select gender</option>
@@ -194,8 +163,6 @@ const Contact = () => {
                 <select
                   name="education"
                   required
-                  value={formData.education}
-                  onChange={handleInputChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                 >
                   <option value="">Select your highest qualification</option>
@@ -207,21 +174,6 @@ const Contact = () => {
                   <option value="other">Other</option>
                 </select>
               </div>
-
-              {formData.education === 'other' && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Other Qualification
-                  </label>
-                  <input
-                    type="text"
-                    name="otherEducation"
-                    value={formData.otherEducation}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                  />
-                </div>
-              )}
             </div>
 
             {/* Professional Details */}
@@ -236,8 +188,7 @@ const Contact = () => {
                   <select
                     name="domain"
                     required
-                    value={formData.domain}
-                    onChange={handleInputChange}
+                    onChange={handleDomainChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   >
                     <option value="">Select domain</option>
@@ -257,6 +208,7 @@ const Contact = () => {
                       </label>
                       <input
                         type="text"
+                        name="target_audience"
                         value={selectedDomain.audience}
                         readOnly
                         className="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-500"
@@ -269,6 +221,7 @@ const Contact = () => {
                       </label>
                       <input
                         type="text"
+                        name="training_location"
                         value={selectedDomain.location}
                         readOnly
                         className="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-500"
@@ -281,6 +234,7 @@ const Contact = () => {
                       </label>
                       <input
                         type="text"
+                        name="location_type"
                         value={selectedDomain.type}
                         readOnly
                         className="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-500"
@@ -293,6 +247,7 @@ const Contact = () => {
                       </label>
                       <input
                         type="text"
+                        name="training_language"
                         value={selectedDomain.language}
                         readOnly
                         className="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-500"
@@ -311,8 +266,6 @@ const Contact = () => {
                       name="experience"
                       required
                       min="0"
-                      value={formData.experience}
-                      onChange={handleInputChange}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                     />
                     <span className="text-gray-600">years</span>
@@ -333,8 +286,6 @@ const Contact = () => {
                     type="email"
                     name="email"
                     required
-                    value={formData.email}
-                    onChange={handleInputChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   />
                   <p className="mt-1 text-sm text-gray-500">Please enter a valid email address</p>
@@ -349,8 +300,6 @@ const Contact = () => {
                     name="mobile"
                     required
                     pattern="[0-9]{10}"
-                    value={formData.mobile}
-                    onChange={handleInputChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   />
                   <p className="mt-1 text-sm text-gray-500">Enter 10-digit number without country code</p>
@@ -368,8 +317,6 @@ const Contact = () => {
                 <textarea
                   name="message"
                   rows={4}
-                  value={formData.message}
-                  onChange={handleInputChange}
                   placeholder="Share any relevant information or specific inquiries"
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                 ></textarea>
@@ -381,9 +328,7 @@ const Contact = () => {
               className="w-full bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition"
             >
               Submit Application
-              </button>
-              <input type="hidden" name="_captcha" value="false"></input>
-              <input type="hidden" name="_next" value="https://vitalstride.in/thank-you" />
+            </button>
           </form>
         </div>
 
