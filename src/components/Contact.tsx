@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
 
 const Contact = () => {
   const [selectedDomain, setSelectedDomain] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
 
   const domains = [
     {
@@ -89,6 +90,39 @@ const Contact = () => {
     setSelectedDomain(domain || null);
   };
 
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+    
+    const formData = new FormData(e.target);
+    
+    try {
+      // Use fetch API to post the form data to FormSubmit.co
+      const response = await fetch('https://formsubmit.co/ajax/info@vitalstride.in', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      const result = await response.json();
+      
+      if (result.success === 'true') {
+        // Redirect to thank you page
+        window.location.href = 'https://vitalstride.in/thank-you';
+      } else {
+        alert('There was an error submitting the form. Please try again.');
+        setSubmitting(false);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('There was an error submitting the form. Please try again.');
+      setSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -102,13 +136,12 @@ const Contact = () => {
 
         <div className="max-w-2xl mx-auto">
           <form 
-            action="https://formsubmit.co/info@vitalstride.in" 
-            method="POST" 
+            onSubmit={handleSubmit}
             className="space-y-6 bg-white p-8 rounded-xl shadow-sm"
           >
-            {/* FormSubmit.co Configuration */}
+            {/* Hidden fields for FormSubmit configuration */}
             <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" value="https://vitalstride.in/thank-you" />
+            <input type="hidden" name="_subject" value="New Training Application" />
 
             <div className="space-y-4">
               <div>
@@ -325,9 +358,10 @@ const Contact = () => {
 
             <button
               type="submit"
-              className="w-full bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition"
+              disabled={submitting}
+              className={`w-full ${submitting ? 'bg-indigo-400' : 'bg-indigo-600 hover:bg-indigo-700'} text-white px-6 py-3 rounded-lg transition`}
             >
-              Submit Application
+              {submitting ? 'Submitting...' : 'Submit Application'}
             </button>
           </form>
         </div>
