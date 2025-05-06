@@ -111,7 +111,7 @@ const Contact = () => {
       
       if (result.success === 'true') {
         // Redirect to thank you page
-        window.location.href = 'https://vitalstride.in/thank-you';
+        window.location.href = 'https://vitalstride.in/ThankYou';
       } else {
         alert('There was an error submitting the form. Please try again.');
         setSubmitting(false);
