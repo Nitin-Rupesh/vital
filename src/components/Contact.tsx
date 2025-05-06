@@ -108,7 +108,7 @@ const Contact = () => {
           >
             {/* FormSubmit.co Configuration */}
             <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" value="https://vitalstride.in/thank-you" />
+            <input type="hidden" name="_next" value="/thank-you" />
 
             <div className="space-y-4">
               <div>
