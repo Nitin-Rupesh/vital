@@ -1,21 +1,11 @@
 import React, { useState } from 'react';
-import { Mail, MapPin } from 'lucide-react';
-
-// Define an interface for the domain object
-interface Domain {
-  name: string;
-  audience: string;
-  location: string;
-  type: string;
-  language: string;
-}
+import { Mail, Phone, MapPin, Check } from 'lucide-react';
 
 const Contact = () => {
-  // Fix: Specify the type of selectedDomain as Domain | null
-  const [selectedDomain, setSelectedDomain] = useState<Domain | null>(null);
-  const [submitting, setSubmitting] = useState(false);
+  const [selectedDomain, setSelectedDomain] = useState(null);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const domains: Domain[] = [
+  const domains = [
     {
       name: 'Public Health',
       audience: 'Govt. Doctor, Nurse, Lab Technician, Women Health Volunteer, Community',
@@ -95,42 +85,25 @@ const Contact = () => {
     }
   ];
 
-  const handleDomainChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleDomainChange = (e) => {
     const domain = domains.find(d => d.name === e.target.value);
     setSelectedDomain(domain || null);
   };
 
-  // Handle form submission
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitting(true);
+    setIsSubmitted(true);
     
-    const formData = new FormData(e.currentTarget);
-    
-    try {
-      // Use fetch API to post the form data to FormSubmit.co
-      const response = await fetch('https://formsubmit.co/ajax/info@vitalstride.in', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
-      
-      const result = await response.json();
-      
-      if (result.success === 'true') {
-        // Redirect to thank you page
-        window.location.href = 'https://vitalstride.in/thank-you';
-      } else {
-        alert('There was an error submitting the form. Please try again.');
-        setSubmitting(false);
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('There was an error submitting the form. Please try again.');
-      setSubmitting(false);
-    }
+    const formData = new FormData(e.target);
+    await fetch('https://formsubmit.co/info@vitalstride.in', {
+      method: 'POST',
+      body: formData
+    });
+
+    // Refresh the page after 2 seconds
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   };
 
   return (
@@ -149,9 +122,8 @@ const Contact = () => {
             onSubmit={handleSubmit}
             className="space-y-6 bg-white p-8 rounded-xl shadow-sm"
           >
-            {/* Hidden fields for FormSubmit configuration */}
+            {/* FormSubmit.co Configuration */}
             <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_subject" value="New Training Application" />
 
             <div className="space-y-4">
               <div>
@@ -368,10 +340,21 @@ const Contact = () => {
 
             <button
               type="submit"
-              disabled={submitting}
-              className={`w-full ${submitting ? 'bg-indigo-400' : 'bg-indigo-600 hover:bg-indigo-700'} text-white px-6 py-3 rounded-lg transition`}
+              disabled={isSubmitted}
+              className={`w-full flex items-center justify-center px-6 py-3 rounded-lg transition duration-300 ${
+                isSubmitted 
+                ? 'bg-green-600 hover:bg-green-700' 
+                : 'bg-indigo-600 hover:bg-indigo-700'
+              } text-white`}
             >
-              {submitting ? 'Submitting...' : 'Submit Application'}
+              {isSubmitted ? (
+                <>
+                  <Check className="w-5 h-5 mr-2" />
+                  Submitted
+                </>
+              ) : (
+                'Submit Application'
+              )}
             </button>
           </form>
         </div>
