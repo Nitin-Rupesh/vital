@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
 import { Mail, MapPin } from 'lucide-react';
 
+// Define an interface for the domain object
+interface Domain {
+  name: string;
+  audience: string;
+  location: string;
+  type: string;
+  language: string;
+}
+
 const Contact = () => {
-  const [selectedDomain, setSelectedDomain] = useState(null);
+  // Fix: Specify the type of selectedDomain as Domain | null
+  const [selectedDomain, setSelectedDomain] = useState<Domain | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
-  const domains = [
+  const domains: Domain[] = [
     {
       name: 'Public Health',
       audience: 'Govt. Doctor, Nurse, Lab Technician, Women Health Volunteer, Community',
@@ -85,17 +95,17 @@ const Contact = () => {
     }
   ];
 
-  const handleDomainChange = (e) => {
+  const handleDomainChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const domain = domains.find(d => d.name === e.target.value);
     setSelectedDomain(domain || null);
   };
 
   // Handle form submission
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
     
-    const formData = new FormData(e.target);
+    const formData = new FormData(e.currentTarget);
     
     try {
       // Use fetch API to post the form data to FormSubmit.co
