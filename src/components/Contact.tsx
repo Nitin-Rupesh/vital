@@ -100,7 +100,7 @@ const Contact = () => {
       body: formData
     });
 
-    // Refresh the page after 2 seconds
+    // Refresh the page after 1 seconds
     setTimeout(() => {
       window.location.reload();
     }, 1000);
