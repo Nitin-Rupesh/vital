@@ -103,7 +103,7 @@ const Contact = () => {
     // Refresh the page after 2 seconds
     setTimeout(() => {
       window.location.reload();
-    }, 2000);
+    }, 1000);
   };
 
   return (
