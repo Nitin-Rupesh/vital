@@ -12,6 +12,7 @@ import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import ThankYou from './components/ThankYou';
 
+
 function App() {
   return (
     <Router>
